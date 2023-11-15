@@ -1,0 +1,27 @@
+ <h3 class="text-center">Welcome to <%= @restaurant.name %></h3>
+
+<div class="card m-3">
+  <p>The Restaurant "<%= @restaurant.name %>" can be found at : <%= @restaurant.address %>.</p>
+  <p>You can make a reservation at : <%= @restaurant.phone_number %></p>
+  <p>It specialize in <strong><%= @restaurant.category %></strong> food!</p>
+</div>
+
+<h3>Reviews:</h3>
+
+  <% @restaurant.reviews.each do |review| %>
+  <div class="card m-3">
+    <p>Review : <%= review.content%></p>
+    <p>Rating : <%= review.rating  %>/ 5</p>
+  </div>
+  <% end %>
+
+
+<h3 class="m-3">Add a review:</h3>
+
+<div>
+  <%= simple_form_for [@restaurant, @review] do |f| %>
+    <%= f.input :content %>
+    <%= f.input :rating %>
+    <%= f.submit %>
+  <% end %>
+</div>
